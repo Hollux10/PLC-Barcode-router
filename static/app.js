@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Send explicit booleans for checkboxes (unchecked boxes are absent from FormData otherwise)
         formData.set('log_to_file', formData.get('log_to_file') ? 'true' : 'false');
         formData.set('log_heartbeat', formData.get('log_heartbeat') ? 'true' : 'false');
+        formData.set('heartbeat_enabled', formData.get('heartbeat_enabled') ? 'true' : 'false');
 
         try {
             const response = await fetch('/settings', {

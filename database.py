@@ -54,6 +54,14 @@ def init_db():
         cursor.execute("ALTER TABLE settings ADD COLUMN log_heartbeat INTEGER NOT NULL DEFAULT 1")
     except Exception:
         pass
+    try:
+        cursor.execute("ALTER TABLE settings ADD COLUMN heartbeat_interval INTEGER NOT NULL DEFAULT 10")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE settings ADD COLUMN heartbeat_enabled INTEGER NOT NULL DEFAULT 1")
+    except Exception:
+        pass
 
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS random_routing (
@@ -64,14 +72,14 @@ def init_db():
     ''')
 
     # Insert default settings if not exists
-    cursor.execute("INSERT OR IGNORE INTO settings (id, host, port, log_to_file, log_file_count, routing_mode) VALUES (1, '0.0.0.0', 8080, 1, 5, 'barcode')")
+    cursor.execute("INSERT OR IGNORE INTO settings (id, host, port, log_to_file, log_file_count, routing_mode, log_heartbeat, heartbeat_interval, heartbeat_enabled) VALUES (1, '0.0.0.0', 8080, 1, 5, 'barcode', 1, 10, 1)")
     conn.commit()
     conn.close()
 
 def get_settings():
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
-    cursor.execute("SELECT host, port, log_to_file, log_file_count, routing_mode, log_heartbeat FROM settings WHERE id = 1")
+    cursor.execute("SELECT host, port, log_to_file, log_file_count, routing_mode, log_heartbeat, heartbeat_interval, heartbeat_enabled FROM settings WHERE id = 1")
     row = cursor.fetchone()
     conn.close()
     if row:
@@ -82,14 +90,16 @@ def get_settings():
             "log_file_count": row[3] if row[3] else 5,
             "routing_mode": row[4] if row[4] else 'barcode',
             "log_heartbeat": bool(row[5]) if row[5] is not None else True,
+            "heartbeat_interval": row[6] if row[6] else 10,
+            "heartbeat_enabled": bool(row[7]) if row[7] is not None else True,
         }
-    return {"host": "0.0.0.0", "port": 8080, "log_to_file": True, "log_file_count": 5, "routing_mode": "barcode", "log_heartbeat": True}
+    return {"host": "0.0.0.0", "port": 8080, "log_to_file": True, "log_file_count": 5, "routing_mode": "barcode", "log_heartbeat": True, "heartbeat_interval": 10, "heartbeat_enabled": True}
 
-def update_settings(host: str, port: int, log_to_file: bool = False, log_file_count: int = 5, routing_mode: str = "barcode", log_heartbeat: bool = True):
+def update_settings(host: str, port: int, log_to_file: bool = False, log_file_count: int = 5, routing_mode: str = "barcode", log_heartbeat: bool = True, heartbeat_interval: int = 10, heartbeat_enabled: bool = True):
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
-    cursor.execute("UPDATE settings SET host = ?, port = ?, log_to_file = ?, log_file_count = ?, routing_mode = ?, log_heartbeat = ? WHERE id = 1",
-                   (host, port, 1 if log_to_file else 0, log_file_count, routing_mode, 1 if log_heartbeat else 0))
+    cursor.execute("UPDATE settings SET host = ?, port = ?, log_to_file = ?, log_file_count = ?, routing_mode = ?, log_heartbeat = ?, heartbeat_interval = ?, heartbeat_enabled = ? WHERE id = 1",
+                   (host, port, 1 if log_to_file else 0, log_file_count, routing_mode, 1 if log_heartbeat else 0, max(1, int(heartbeat_interval)), 1 if heartbeat_enabled else 0))
     conn.commit()
     conn.close()
     return True

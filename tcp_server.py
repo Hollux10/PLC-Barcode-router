@@ -236,6 +236,7 @@ def _record_offload(loc_id, item_index, dest, reason):
         _offload_events.appendleft(event)
 
 _server_thread = None
+_heartbeat_thread = None
 _running = False
 _server_socket = None
 _file_log_lock = threading.Lock()
@@ -243,6 +244,13 @@ _file_log_lock = threading.Lock()
 # Current PLC connection state (for the dashboard status widget)
 _connection_lock = threading.Lock()
 _current_plc = {"connected": False, "ip": None, "port": None}
+
+# Connected PLC client sockets (used to send heartbeats to the PLC)
+_plc_clients_lock = threading.Lock()
+_plc_clients = set()
+
+# Heartbeat request message sent to the PLC (matches the 001 heartbeat request)
+HEARTBEAT_MSG = "001"
 
 def get_connection_status():
     """Return the current PLC connection state."""
@@ -331,10 +339,15 @@ def process_plc_message(data: str) -> str:
         settings = get_settings()
         if settings.get("log_heartbeat", True):
             add_log("RX 001 | Heartbeat received", "receive")
-        response = "001|0000|00000"
-        if settings.get("log_heartbeat", True):
-            add_log(f"TX 001 | Heartbeat response: '{response}'", "send")
-        return response
+        # Reply only to the bare heartbeat request ("001"). A framed heartbeat
+        # like "001|0000|00000" is an acknowledgement of the heartbeat we sent
+        # to the PLC, so log it but do NOT echo it back (avoids heartbeat loops).
+        if data.strip() == "001":
+            response = "001|0000|00000"
+            if settings.get("log_heartbeat", True):
+                add_log(f"TX 001 | Heartbeat response: '{response}'", "send")
+            return response
+        return None
 
     if not data.startswith("042"):
         if data.startswith("044"):
@@ -420,6 +433,15 @@ def handle_client(conn, addr):
         _current_plc["connected"] = True
         _current_plc["ip"] = addr[0]
         _current_plc["port"] = addr[1]
+    with _plc_clients_lock:
+        _plc_clients.add(conn)
+    # Send an immediate heartbeat right after the connection is established
+    try:
+        settings = get_settings()
+        if settings.get("heartbeat_enabled", True):
+            _send_heartbeat(conn)
+    except Exception:
+        pass
     conn.settimeout(1.0)
     buffer = b""
     with conn:
@@ -468,7 +490,49 @@ def handle_client(conn, addr):
         _current_plc["connected"] = False
         _current_plc["ip"] = None
         _current_plc["port"] = None
+    with _plc_clients_lock:
+        _plc_clients.discard(conn)
     add_log(f"PLC disconnected from {addr[0]}:{addr[1]}", "warning")
+
+
+def _send_heartbeat(conn):
+    """Send a heartbeat request to a connected PLC. Returns True on success."""
+    try:
+        conn.sendall(b'\x02' + HEARTBEAT_MSG.encode("utf-8") + b'\x03')
+        settings = get_settings()
+        if settings.get("log_heartbeat", True):
+            add_log(f"TX 001 | Heartbeat sent to PLC", "send")
+        return True
+    except Exception as e:
+        add_log(f"Heartbeat send failed: {e}", "error")
+        with _plc_clients_lock:
+            _plc_clients.discard(conn)
+        try:
+            conn.close()
+        except Exception:
+            pass
+        return False
+
+
+def _heartbeat_loop():
+    """Periodically send a heartbeat to each connected PLC."""
+    while _running:
+        try:
+            settings = get_settings()
+            interval = settings.get("heartbeat_interval", 10)
+            enabled = settings.get("heartbeat_enabled", True)
+        except Exception:
+            interval, enabled = 10, True
+
+        time.sleep(max(0.5, float(interval)))
+        if not _running:
+            break
+        if not enabled:
+            continue
+        with _plc_clients_lock:
+            clients = list(_plc_clients)
+        for conn in clients:
+            _send_heartbeat(conn)
 
 
 def _start_tcp_server_loop():
@@ -506,18 +570,23 @@ def _start_tcp_server_loop():
 
 
 def run_server_in_background():
-    global _running, _server_thread
+    global _running, _server_thread, _heartbeat_thread
     if _running:
         return
     logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(message)s")
     _running = True
     _server_thread = threading.Thread(target=_start_tcp_server_loop, daemon=True)
     _server_thread.start()
+    _heartbeat_thread = threading.Thread(target=_heartbeat_loop, daemon=True)
+    _heartbeat_thread.start()
 
 
 def stop_server():
-    global _running, _server_thread
+    global _running, _server_thread, _heartbeat_thread
     _running = False
+    if _heartbeat_thread:
+        _heartbeat_thread.join(timeout=3.0)
+        _heartbeat_thread = None
     if _server_thread:
         _server_thread.join(timeout=3.0)
         _server_thread = None

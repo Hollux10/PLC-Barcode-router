@@ -74,9 +74,11 @@ async def update_settings(
     log_to_file: bool = Form(True),
     log_file_count: int = Form(5),
     routing_mode: str = Form("barcode"),
-    log_heartbeat: bool = Form(True)
+    log_heartbeat: bool = Form(True),
+    heartbeat_interval: int = Form(10),
+    heartbeat_enabled: bool = Form(True)
 ):
-    success = database.update_settings(host, port, log_to_file, log_file_count, routing_mode, log_heartbeat)
+    success = database.update_settings(host, port, log_to_file, log_file_count, routing_mode, log_heartbeat, heartbeat_interval, heartbeat_enabled)
     if success:
         tcp_server.restart_server()
         return {"success": True, "message": "Settings updated and server restarted"}
