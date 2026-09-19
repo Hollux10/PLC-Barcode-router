@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLC Barcode Router - Offload Trends</title>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css?v=11">
+</head>
+<body>
+    <div class="background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+                <h1>Offload Trends</h1>
+                <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+                    <span class="badge" id="session-badge">Session Stopped</span>
+                    <button class="btn primary-btn" id="start-session">Start Session</button>
+                    <button class="btn primary-btn" id="pause-session" disabled>Pause</button>
+                    <button class="btn delete-btn" id="clear-session">End Session</button>
+                    <a class="btn primary-btn popout-btn" href="/offload" style="text-decoration:none;">Offload Events</a>
+                    <a class="btn primary-btn popout-btn" href="/" style="text-decoration:none;">Dashboard</a>
+                </div>
+            </div>
+            <p class="text-muted">Per-minute trends of offload attempts and confirmed offloads, broken down by destination.</p>
+        </header>
+
+        <div class="panel" style="margin-bottom: 2rem;">
+            <div class="panel-header">
+                <h2>Attempts vs Confirmed over time</h2>
+                <span class="text-muted" style="font-size:0.875rem;"><span class="legend-swatch" style="background:#475569; display:inline-block;"></span> Attempts &nbsp; <span class="legend-swatch" style="background:var(--success); display:inline-block;"></span> Confirmed</span>
+            </div>
+            <div id="trend-overall" class="trend-chart">
+                <div class="trend-empty">No data yet. Start a session to begin collecting trends.</div>
+            </div>
+            <div class="trend-xlabels" id="trend-overall-labels"></div>
+        </div>
+
+        <div class="panel" style="margin-bottom: 2rem;">
+            <div class="panel-header">
+                <h2>Per-Destination Attempts over time</h2>
+                <span class="text-muted" style="font-size:0.875rem;">Stacked by destination per minute</span>
+            </div>
+            <div id="trend-dest" class="trend-chart">
+                <div class="trend-empty">No data yet. Start a session to begin collecting trends.</div>
+            </div>
+            <div class="trend-xlabels" id="trend-dest-labels"></div>
+            <div class="trend-legend" id="trend-legend"></div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Per-Minute Breakdown</h2>
+            </div>
+            <div class="table-container" style="max-height: 420px;">
+                <table id="trend-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Attempts</th>
+                            <th>Confirmed</th>
+                            <th>Wrong</th>
+                            <th>Success Rate</th>
+                            <th>By Destination</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="6" class="text-center text-muted">No trend data yet. Start a session to begin collecting.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+</div>
+    </div>
+
+    <div class="modal-overlay" id="report-modal" style="display:none;">
+        <div class="modal-box">
+            <h3>Generate Report?</h3>
+            <p>Do you want a report to be generated?</p>
+            <div class="modal-actions">
+                <button class="btn primary-btn" id="report-yes">Yes</button>
+                <button class="btn delete-btn" id="report-no">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/trends.js?v=11"></script>
+</body>
+</html>

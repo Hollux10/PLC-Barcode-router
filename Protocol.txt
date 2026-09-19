@@ -1,0 +1,289 @@
+[2026-09-17 15:15:51] [ERROR] Failed to start TCP server on 10.9.0.123:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 15:15:51] [INFO] TCP Server stopped.
+[2026-09-17 15:19:17] [ERROR] Failed to start TCP server on 10.9.0.123:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 15:19:17] [INFO] TCP Server stopped.
+[2026-09-17 15:19:34] [WARNING] Restarting TCP Server with new settings...
+[2026-09-17 15:19:34] [INFO] TCP Server listening on 192.168.5.249:3002
+[2026-09-17 15:24:52] [INFO] TCP Server listening on 192.168.5.249:3002
+[2026-09-17 15:25:59] [WARNING] Restarting TCP Server with new settings...
+[2026-09-17 15:25:59] [INFO] TCP Server stopped.
+[2026-09-17 15:25:59] [ERROR] Failed to start TCP server on 192.168.5.20:3002 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 15:25:59] [INFO] TCP Server stopped.
+[2026-09-17 15:26:15] [WARNING] Restarting TCP Server with new settings...
+[2026-09-17 15:26:15] [INFO] TCP Server listening on 192.168.5.249:3002
+[2026-09-17 15:29:30] [WARNING] Restarting TCP Server with new settings...
+[2026-09-17 15:29:31] [INFO] TCP Server stopped.
+[2026-09-17 15:29:31] [INFO] TCP Server listening on 192.168.5.241:3002
+[2026-09-17 15:34:59] [WARNING] Restarting TCP Server with new settings...
+[2026-09-17 15:34:59] [INFO] TCP Server stopped.
+[2026-09-17 15:34:59] [ERROR] Failed to start TCP server on 192.168.5.249:3002 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 15:34:59] [INFO] TCP Server stopped.
+[2026-09-17 15:35:01] [WARNING] Restarting TCP Server with new settings...
+[2026-09-17 15:35:01] [ERROR] Failed to start TCP server on 192.168.5.249:3002 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 15:35:01] [INFO] TCP Server stopped.
+[2026-09-17 15:35:15] [WARNING] Restarting TCP Server with new settings...
+[2026-09-17 15:35:15] [INFO] TCP Server listening on 192.168.5.241:3002
+[2026-09-17 15:38:54] [WARNING] Restarting TCP Server with new settings...
+[2026-09-17 15:38:54] [INFO] TCP Server stopped.
+[2026-09-17 15:38:54] [INFO] TCP Server listening on 192.168.5.213:3002
+[2026-09-17 15:40:39] [WARNING] Restarting TCP Server with new settings...
+[2026-09-17 15:40:40] [INFO] TCP Server stopped.
+[2026-09-17 15:40:40] [INFO] TCP Server listening on 192.168.5.213:3000
+[2026-09-17 15:40:47] [INFO] PLC connected from 192.168.5.20:61801
+[2026-09-17 15:40:47] [WARNING] PLC disconnected from 192.168.5.20:61801
+[2026-09-17 15:40:49] [INFO] PLC connected from 192.168.5.20:64099
+[2026-09-17 15:41:37] [WARNING] PLC disconnected from 192.168.5.20:64099
+[2026-09-17 15:41:39] [INFO] PLC connected from 192.168.5.20:60845
+[2026-09-17 15:42:33] [WARNING] PLC disconnected from 192.168.5.20:60845
+[2026-09-17 15:42:35] [INFO] PLC connected from 192.168.5.20:54754
+[2026-09-17 15:43:30] [WARNING] PLC disconnected from 192.168.5.20:54754
+[2026-09-17 15:43:32] [INFO] PLC connected from 192.168.5.20:64134
+[2026-09-17 15:44:27] [WARNING] PLC disconnected from 192.168.5.20:64134
+[2026-09-17 15:44:29] [INFO] PLC connected from 192.168.5.20:54069
+[2026-09-17 15:45:24] [WARNING] PLC disconnected from 192.168.5.20:54069
+[2026-09-17 15:45:26] [INFO] PLC connected from 192.168.5.20:65446
+[2026-09-17 15:46:00] [WARNING] PLC disconnected from 192.168.5.20:65446
+[2026-09-17 15:46:00] [INFO] PLC connected from 192.168.5.20:63408
+[2026-09-17 15:46:25] [WARNING] PLC disconnected from 192.168.5.20:63408
+[2026-09-17 15:46:27] [INFO] PLC connected from 192.168.5.20:59661
+[2026-09-17 15:47:22] [WARNING] PLC disconnected from 192.168.5.20:59661
+[2026-09-17 15:47:24] [INFO] PLC connected from 192.168.5.20:51140
+[2026-09-17 15:48:18] [WARNING] PLC disconnected from 192.168.5.20:51140
+[2026-09-17 15:48:20] [INFO] PLC connected from 192.168.5.20:63318
+[2026-09-17 15:49:15] [WARNING] PLC disconnected from 192.168.5.20:63318
+[2026-09-17 15:49:17] [INFO] PLC connected from 192.168.5.20:52054
+[2026-09-17 15:50:12] [WARNING] PLC disconnected from 192.168.5.20:52054
+[2026-09-17 15:50:14] [INFO] PLC connected from 192.168.5.20:53089
+[2026-09-17 15:51:26] [RECEIVE] RX | Raw: '010|0040|04012|0|Dest Request'
+[2026-09-17 15:51:27] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04012 | Dest=00000 | Reason=PRK
+[2026-09-17 15:51:32] [RECEIVE] RX | Raw: '010|0040|04013|0|Dest Request'
+[2026-09-17 15:51:33] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04013 | Dest=00000 | Reason=PRK
+[2026-09-17 15:51:37] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-17 15:51:37] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-17 15:51:39] [RECEIVE] RX | Raw: '010|0040|04014|0|Dest Request'
+[2026-09-17 15:51:40] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04014 | Dest=00000 | Reason=PRK
+[2026-09-17 15:51:41] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-17 15:51:41] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-17 15:51:43] [RECEIVE] RX | Raw: '010|0040|04015|0|Dest Request'
+[2026-09-17 15:51:44] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04015 | Dest=00000 | Reason=PRK
+[2026-09-17 15:52:45] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-17 15:52:45] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-17 15:53:23] [RECEIVE] RX | Raw: '010|0040|04016|0|Dest Request'
+[2026-09-17 15:53:24] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04016 | Dest=00000 | Reason=PRK
+[2026-09-17 15:53:27] [RECEIVE] RX | Raw: '010|0040|04017|0|Dest Request'
+[2026-09-17 15:53:28] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04017 | Dest=00000 | Reason=PRK
+[2026-09-17 15:53:30] [RECEIVE] RX | Raw: '010|0040|04018|0|Dest Request'
+[2026-09-17 15:53:31] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04018 | Dest=00000 | Reason=PRK
+[2026-09-17 15:53:34] [RECEIVE] RX | Raw: '010|0040|04019|0|Dest Request'
+[2026-09-17 15:53:35] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04019 | Dest=00000 | Reason=PRK
+[2026-09-17 15:53:37] [RECEIVE] RX | Raw: '010|0040|04020|0|Dest Request'
+[2026-09-17 15:53:38] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04020 | Dest=00000 | Reason=PRK
+[2026-09-17 15:53:41] [RECEIVE] RX | Raw: '010|0040|04021|0|Dest Request'
+[2026-09-17 15:53:43] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04021 | Dest=00000 | Reason=PRK
+[2026-09-17 15:53:51] [RECEIVE] RX | Raw: '010|0040|04022|0|Dest Request'
+[2026-09-17 15:53:52] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04022 | Dest=00000 | Reason=PRK
+[2026-09-17 15:53:53] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-17 15:53:53] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-17 15:54:05] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04022 | Dest=00000 | Reason=IFC
+[2026-09-17 15:54:22] [RECEIVE] RX 044 | Offload event | Loc=0030 | Item=03001 | Dest=00000 | Reason=PRK
+[2026-09-17 15:54:51] [RECEIVE] RX | Raw: '010|0040|04023|0|Dest Request'
+[2026-09-17 15:54:52] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04023 | Dest=00000 | Reason=PRK
+[2026-09-17 15:55:01] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-17 15:55:01] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-17 15:55:15] [RECEIVE] RX | Raw: '010|0040|04024|0|Dest Request'
+[2026-09-17 15:55:16] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04024 | Dest=00000 | Reason=PRK
+[2026-09-17 15:55:41] [WARNING] PLC disconnected from 192.168.5.20:53089
+[2026-09-17 15:56:15] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-17 15:56:16] [INFO] Offload session started.
+[2026-09-17 15:56:17] [INFO] PLC connected from 127.0.0.1:50767
+[2026-09-17 15:56:17] [RECEIVE] RX 044 | Offload event | Loc=4001 | Item=12345 | Dest=00022 | Reason=OFL
+[2026-09-17 15:56:17] [WARNING] PLC disconnected from 127.0.0.1:50767
+[2026-09-17 15:56:39] [ERROR] Failed to start TCP server on 10.9.0.123:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 15:56:39] [INFO] TCP Server stopped.
+[2026-09-17 15:56:58] [WARNING] Restarting TCP Server with new settings...
+[2026-09-17 15:56:58] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 15:56:58] [INFO] TCP Server stopped.
+[2026-09-17 15:57:44] [WARNING] Restarting TCP Server with new settings...
+[2026-09-17 15:57:45] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 15:57:45] [INFO] TCP Server stopped.
+[2026-09-17 15:57:45] [WARNING] Restarting TCP Server with new settings...
+[2026-09-17 15:57:47] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 15:57:48] [INFO] TCP Server stopped.
+[2026-09-17 15:58:32] [WARNING] Restarting TCP Server with new settings...
+[2026-09-17 15:58:34] [INFO] TCP Server listening on 192.168.5.213:3000
+[2026-09-17 15:59:09] [INFO] PLC connected from 192.168.5.20:62082
+[2026-09-17 15:59:31] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04027 | Dest=00000 | Reason=IFC
+[2026-09-17 15:59:31] [RECEIVE] RX | Raw: '010|0040|04028|0|Dest Request'
+[2026-09-17 15:59:32] [RECEIVE] RX 044 | Offload event | Loc=0040 | Item=04028 | Dest=00000 | Reason=PRK
+[2026-09-17 15:59:33] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-17 15:59:33] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-17 15:59:55] [INFO] Offload session started.
+[2026-09-17 15:59:59] [RECEIVE] RX | Raw: '010|0030|03002|0|Dest Request'
+[2026-09-17 16:00:00] [RECEIVE] RX 044 | Offload event | Loc=0030 | Item=03002 | Dest=00000 | Reason=PRK
+[2026-09-17 16:00:41] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-17 16:00:41] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-17 20:45:14] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 20:45:14] [INFO] TCP Server stopped.
+[2026-09-17 20:45:23] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 20:45:23] [INFO] TCP Server stopped.
+[2026-09-17 20:45:38] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 20:45:38] [INFO] TCP Server stopped.
+[2026-09-17 20:48:02] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 20:48:02] [INFO] TCP Server stopped.
+[2026-09-17 20:48:40] [INFO] Offload session started.
+[2026-09-17 20:48:41] [INFO] Offload session cleared.
+[2026-09-17 20:51:29] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 20:51:29] [INFO] TCP Server stopped.
+[2026-09-17 20:53:35] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-17 20:53:35] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-17 20:53:48] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 20:53:48] [INFO] TCP Server stopped.
+[2026-09-17 20:56:54] [INFO] Offload session started.
+[2026-09-17 20:56:54] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 20:56:54] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 20:56:54] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 20:56:54] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 20:56:54] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 20:56:54] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 20:56:54] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 20:56:54] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=2 | Dest=000 | Reason=IFC
+[2026-09-17 20:56:54] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=2 | Dest=000 | Reason=OFL
+[2026-09-17 20:57:19] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 20:57:19] [INFO] TCP Server stopped.
+[2026-09-17 20:58:23] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 20:58:23] [INFO] TCP Server stopped.
+[2026-09-17 20:59:23] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 20:59:23] [INFO] TCP Server stopped.
+[2026-09-17 21:01:44] [INFO] Offload session started.
+[2026-09-17 21:01:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:01:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:01:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:01:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:01:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:01:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:01:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:01:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=IFC
+[2026-09-17 21:01:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=010 | Reason=OFL
+[2026-09-17 21:01:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=010 | Reason=OFL
+[2026-09-17 21:01:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=010 | Reason=SUP
+[2026-09-17 21:01:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=010 | Reason=SUP
+[2026-09-17 21:01:58] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 21:01:58] [INFO] TCP Server stopped.
+[2026-09-17 21:04:28] [INFO] Offload session started.
+[2026-09-17 21:04:35] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 21:04:35] [INFO] TCP Server stopped.
+[2026-09-17 21:04:55] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 21:04:55] [INFO] TCP Server stopped.
+[2026-09-17 21:05:29] [INFO] Offload session started.
+[2026-09-17 21:05:35] [INFO] Offload session cleared.
+[2026-09-17 21:07:17] [INFO] Offload session started.
+[2026-09-17 21:07:17] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:07:17] [WARNING] Offload session paused.
+[2026-09-17 21:07:17] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=2 | Dest=005 | Reason=OFL
+[2026-09-17 21:07:17] [INFO] Offload session resumed.
+[2026-09-17 21:07:17] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=3 | Dest=005 | Reason=SUP
+[2026-09-17 21:07:41] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 21:07:41] [INFO] TCP Server stopped.
+[2026-09-17 21:07:54] [INFO] Offload session started.
+[2026-09-17 21:07:55] [WARNING] Offload session paused.
+[2026-09-17 21:07:57] [INFO] Offload session resumed.
+[2026-09-17 21:13:23] [INFO] Offload session started.
+[2026-09-17 21:13:23] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:13:23] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:13:23] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:13:23] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:13:23] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:13:23] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:13:23] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:13:23] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=2 | Dest=010 | Reason=OFL
+[2026-09-17 21:13:23] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=2 | Dest=010 | Reason=IFC
+[2026-09-17 21:13:29] [INFO] Offload session started.
+[2026-09-17 21:13:29] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:13:29] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:13:29] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:13:29] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:13:29] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:13:29] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:13:29] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:13:29] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=2 | Dest=010 | Reason=OFL
+[2026-09-17 21:13:29] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=2 | Dest=010 | Reason=IFC
+[2026-09-17 21:13:29] [ERROR] Failed to generate PDF report: _Builder.text_at() got an unexpected keyword argument 'font_size'
+[2026-09-17 21:13:36] [INFO] Offload session started.
+[2026-09-17 21:13:36] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:13:36] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:13:44] [INFO] Offload session started.
+[2026-09-17 21:13:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:13:44] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:14:28] [INFO] Offload session started.
+[2026-09-17 21:14:28] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:14:28] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:14:28] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:14:28] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:14:28] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:14:28] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:14:28] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:14:28] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=2 | Dest=010 | Reason=OFL
+[2026-09-17 21:14:28] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=2 | Dest=010 | Reason=IFC
+[2026-09-17 21:14:37] [INFO] Offload session started.
+[2026-09-17 21:14:37] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:14:37] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:14:37] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:14:37] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:14:37] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:14:37] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:14:37] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:14:37] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=2 | Dest=010 | Reason=OFL
+[2026-09-17 21:14:37] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=2 | Dest=010 | Reason=IFC
+[2026-09-17 21:14:45] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 21:14:45] [INFO] TCP Server stopped.
+[2026-09-17 21:14:47] [INFO] Offload session started.
+[2026-09-17 21:15:09] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 21:15:09] [INFO] TCP Server stopped.
+[2026-09-17 21:15:20] [INFO] Offload session started.
+[2026-09-17 21:15:27] [INFO] Offload session cleared.
+[2026-09-17 21:17:21] [INFO] Offload session started.
+[2026-09-17 21:17:21] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=OFL
+[2026-09-17 21:17:21] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=1 | Dest=005 | Reason=SUP
+[2026-09-17 21:17:21] [RECEIVE] RX 044 | Offload event | Loc=1000 | Item=2 | Dest=010 | Reason=OFL
+[2026-09-17 21:18:40] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 21:18:40] [INFO] TCP Server stopped.
+[2026-09-17 21:19:04] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 21:19:04] [INFO] TCP Server stopped.
+[2026-09-17 21:19:19] [INFO] Offload session started.
+[2026-09-17 21:19:22] [INFO] Offload session cleared.
+[2026-09-17 21:21:37] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-17 21:21:37] [INFO] TCP Server stopped.
+[2026-09-18 10:59:27] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-18 10:59:27] [INFO] TCP Server stopped.
+[2026-09-18 10:59:46] [WARNING] Restarting TCP Server with new settings...
+[2026-09-18 10:59:46] [ERROR] Failed to start TCP server on 192.168.5.213:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-18 10:59:46] [INFO] TCP Server stopped.
+[2026-09-18 11:00:03] [WARNING] Restarting TCP Server with new settings...
+[2026-09-18 11:00:03] [INFO] TCP Server listening on 10.9.0.123:3000
+[2026-09-18 11:00:12] [INFO] PLC connected from 10.9.0.66:50355
+[2026-09-18 11:00:27] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-18 11:00:27] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-18 11:00:39] [WARNING] Restarting TCP Server with new settings...
+[2026-09-18 11:00:39] [INFO] TCP Server stopped.
+[2026-09-18 11:00:39] [INFO] TCP Server listening on 10.9.0.123:3000
+[2026-09-18 11:01:15] [RECEIVE] RX 042 | Loc=4001 | Index=32563 | Barcode='BA12547'
+[2026-09-18 11:01:15] [SEND] TX 050 [Random for Loc 4001] | Loc=4001 | Index=32563 | Dest=00001
+[2026-09-18 11:01:31] [RECEIVE] RX 044 | Offload event | Loc=4001 | Item=32563 | Dest=00001 | Reason=OFL
+[2026-09-18 11:01:41] [RECEIVE] RX 044 | Offload event | Loc=4001 | Item=32563 | Dest=00001 | Reason=SUP
+[2026-09-18 11:01:48] [INFO] Offload session started.
+[2026-09-18 11:01:54] [RECEIVE] RX 042 | Loc=4001 | Index=32563 | Barcode='BA12547'
+[2026-09-18 11:01:54] [SEND] TX 050 [Random for Loc 4001] | Loc=4001 | Index=32563 | Dest=00002
+[2026-09-18 11:02:01] [RECEIVE] RX 044 | Offload event | Loc=4001 | Item=32563 | Dest=00002 | Reason=OFL
+[2026-09-18 11:02:05] [RECEIVE] RX 044 | Offload event | Loc=4001 | Item=32563 | Dest=00002 | Reason=SUP
+[2026-09-18 11:02:15] [RECEIVE] RX 042 | Loc=4001 | Index=32563 | Barcode='BA12547'
+[2026-09-18 11:02:15] [SEND] TX 050 [Random for Loc 4001] | Loc=4001 | Index=32563 | Dest=00005
+[2026-09-18 11:02:37] [RECEIVE] RX 044 | Offload event | Loc=4001 | Item=32563 | Dest=00005 | Reason=OFL
+[2026-09-18 11:02:43] [RECEIVE] RX 044 | Offload event | Loc=4001 | Item=32563 | Dest=00005 | Reason=IFC
+[2026-09-18 11:02:51] [RECEIVE] RX 042 | Loc=4001 | Index=32563 | Barcode='BA12547'
+[2026-09-18 11:02:51] [SEND] TX 050 [Random for Loc 4001] | Loc=4001 | Index=32563 | Dest=00005
+[2026-09-18 11:03:00] [RECEIVE] RX 044 | Offload event | Loc=4001 | Item=32563 | Dest=00005 | Reason=OFL
+[2026-09-18 11:03:12] [RECEIVE] RX 044 | Offload event | Loc=4001 | Item=32563 | Dest=00004 | Reason=SUP
+[2026-09-18 11:03:12] [WARNING] Wrong offload | Loc=4001 | Item=32563 | Sent=00005 | Confirmed=00004
+[2026-09-18 11:05:45] [WARNING] Offload session paused.
+[2026-09-19 10:47:52] [ERROR] Failed to start TCP server on 10.9.0.123:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-19 10:47:52] [INFO] TCP Server stopped.

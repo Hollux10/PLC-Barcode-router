@@ -1,0 +1,52 @@
+[2026-09-16 14:40:18] [WARNING] Restarting TCP Server with new settings...
+[2026-09-16 14:40:18] [INFO] TCP Server stopped.
+[2026-09-16 14:40:18] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 14:40:27] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-16 14:40:27] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-16 14:40:43] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-16 14:40:43] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-16 14:40:58] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-16 14:40:58] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-16 14:41:13] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-16 14:41:13] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-16 14:41:28] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-16 14:41:28] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-16 14:41:44] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-16 14:41:44] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-16 14:41:59] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-16 14:41:59] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-16 14:42:14] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-16 14:42:14] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-16 14:42:30] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-16 14:42:30] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-16 14:42:45] [RECEIVE] RX 001 | Heartbeat received
+[2026-09-16 14:42:45] [SEND] TX 001 | Heartbeat response: '001|0000|00000'
+[2026-09-16 16:08:47] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 16:20:00] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 16:23:15] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 16:32:11] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 16:42:21] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 16:50:17] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 16:54:08] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 16:57:36] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 16:58:39] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 17:04:30] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 17:05:35] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 17:10:58] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 17:20:06] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 17:29:57] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 17:35:31] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 17:39:08] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 19:26:05] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 19:36:10] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-16 20:18:16] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-17 14:29:04] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-17 14:34:56] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-17 16:12:04] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-17 16:12:16] [INFO] Offload session started.
+[2026-09-17 16:12:18] [INFO] Offload session started.
+[2026-09-17 16:12:19] [INFO] Offload session cleared.
+[2026-09-17 16:18:27] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-17 21:25:45] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-19 10:45:15] [INFO] TCP Server listening on 0.0.0.0:3000
+[2026-09-19 10:51:02] [INFO] TCP Server listening on 0.0.0.0:3000

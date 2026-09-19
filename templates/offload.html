@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLC Barcode Router - Offload Events</title>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css?v=11">
+</head>
+<body>
+    <div class="background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+                <h1>Offload Events</h1>
+                <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+                    <span class="badge" id="session-badge">Session Stopped</span>
+                    <button class="btn primary-btn" id="start-session">Start Session</button>
+                    <button class="btn primary-btn" id="pause-session" disabled>Pause</button>
+                    <button class="btn delete-btn" id="clear-session">End Session</button>
+                    <a class="btn primary-btn popout-btn" href="/trends" style="text-decoration:none;">Trends</a>
+                    <a class="btn primary-btn popout-btn" href="/" style="text-decoration:none;">Dashboard</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="panel" style="margin-bottom: 2rem;">
+            <div class="panel-header">
+                <h2>Event Counts</h2>
+                <span class="text-muted" style="font-size:0.875rem;">Incremented for every offload message while the session is running</span>
+            </div>
+            <div class="count-grid" id="count-grid">
+                <!-- Count cards populated by JS -->
+            </div>
+        </div>
+
+        <div class="panel" style="margin-bottom: 2rem;">
+            <div class="panel-header">
+                <h2>Offloads by Destination</h2>
+                <span class="text-muted" style="font-size:0.875rem;">Counts and success rate per destination while the session is running</span>
+            </div>
+            <div class="table-container" style="max-height: 320px;">
+                <table id="dest-table">
+                    <thead>
+                        <tr>
+                            <th>Destination</th>
+                            <th>Total Events</th>
+                            <th>Attempts (OFL)</th>
+                            <th>Confirmed (SUP)</th>
+                            <th>Wrong (WRO)</th>
+                            <th>Success Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="6" class="text-center text-muted">No destination data yet. Start a session to begin counting.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Recent Offload Events</h2>
+                <span class="text-muted" style="font-size:0.875rem;">Item, location and destination are integers</span>
+            </div>
+            <div class="table-container" style="max-height: 420px;">
+                <table id="offload-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th>Item Index</th>
+                            <th>Sent Dest</th>
+                            <th>Destination</th>
+                            <th>Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="6" class="text-center text-muted">No offload events yet. Start a session to begin counting.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="report-modal" style="display:none;">
+        <div class="modal-box">
+            <h3>Generate Report?</h3>
+            <p>Do you want a report to be generated?</p>
+            <div class="modal-actions">
+                <button class="btn primary-btn" id="report-yes">Yes</button>
+                <button class="btn delete-btn" id="report-no">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/offload.js?v=11"></script>
+</body>
+</html>

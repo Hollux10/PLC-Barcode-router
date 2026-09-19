@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLC Barcode Router Dashboard</title>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css?v=10">
+</head>
+<body>
+    <div class="background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+                <h1>PLC Barcode Router <span style="font-size: 0.875rem; color: var(--text-muted); font-weight: 400; margin-left: 0.5rem;">Version: 2.01</span> <span class="badge" id="status-badge">Live</span></h1>
+                <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+                    <a class="btn primary-btn popout-btn" href="/offload" style="text-decoration:none;">Offload Events</a>
+                    <a class="btn primary-btn popout-btn" href="/trends" style="text-decoration:none;">Trends</a>
+                    <button class="btn primary-btn popout-btn" id="popout-logs" onclick="openLogsWindow()">Open PLC Log Window</button>
+                </div>
+            </div>
+            <p>App listens on <strong id="header-host">{{ settings.host }}</strong>:<strong id="header-port">{{ settings.port }}</strong></p>
+            <div class="connection-bar">
+                <span class="led led-disconnected" id="conn-led"></span>
+                <div class="conn-info">
+                    <span class="conn-item">Status: <strong id="conn-status">--</strong></span>
+                    <span class="conn-item">PLC IP: <strong id="conn-plc-ip" class="font-mono">--</strong></span>
+                    <span class="conn-item">Port: <strong id="conn-port" class="font-mono">--</strong></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid">
+            <!-- Left Side: Management -->
+            <div class="panel management">
+                <div class="panel-header">
+                    <h2>Server Settings</h2>
+                </div>
+                <form id="settings-form" class="glass-form" style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-color); flex-direction: column; gap: 0.75rem;">
+                    <p class="settings-section-label">This App (Listening)</p>
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                        <div class="form-group">
+                            <label for="host">Listening IP (Host)</label>
+                            <input type="text" id="host" name="host" value="{{ settings.host }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="port">Listening Port</label>
+                            <input type="number" id="port" name="port" value="{{ settings.port }}" required>
+                        </div>
+                    </div>
+                    <p class="settings-section-label" style="margin-top:0.5rem;">Routing Strategy</p>
+                    <div style="display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap; background: rgba(0,0,0,0.2); padding: 0.75rem 1rem; border-radius: 0.5rem; border: 1px solid var(--border-color);">
+                        <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; margin:0; color:var(--text-main);">
+                            <input type="radio" name="routing_mode" value="barcode" {% if settings.routing_mode == 'barcode' %}checked{% endif %} style="width:1.1rem; height:1.1rem;">
+                            <strong>Barcode Mapping</strong> (Lookup destination by barcode)
+                        </label>
+                        <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; margin:0; color:var(--text-main);">
+                            <input type="radio" name="routing_mode" value="random" {% if settings.routing_mode == 'random' %}checked{% endif %} style="width:1.1rem; height:1.1rem;">
+                            <strong>Random Destination</strong> (Pick randomly per location)
+                        </label>
+                    </div>
+
+                    <p class="settings-section-label" style="margin-top:0.5rem;">Text File Logging</p>
+                    <div style="display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap;">
+                        <div style="display:flex; align-items:center; gap:0.5rem;">
+                            <input type="checkbox" id="log_to_file" name="log_to_file" value="true" {% if settings.log_to_file %}checked{% endif %} style="width: 1.2rem; height: 1.2rem; cursor: pointer;">
+                            <label for="log_to_file" style="cursor: pointer; margin:0;">Enable File Logging (2048 kB max per file)</label>
+                        </div>
+                        <div class="form-group" style="max-width: 150px;">
+                            <label for="log_file_count">Max Files Kept</label>
+                            <input type="number" id="log_file_count" name="log_file_count" value="{{ settings.log_file_count }}" min="1" max="50" required>
+                        </div>
+                    </div>
+                    <p class="settings-section-label" style="margin-top:0.5rem;">Heartbeat Logging</p>
+                    <div style="display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap;">
+                        <div style="display:flex; align-items:center; gap:0.5rem;">
+                            <input type="checkbox" id="log_heartbeat" name="log_heartbeat" value="true" {% if settings.log_heartbeat %}checked{% endif %} style="width: 1.2rem; height: 1.2rem; cursor: pointer;">
+                            <label for="log_heartbeat" style="cursor: pointer; margin:0;">Log Heartbeat Messages (001)</label>
+                        </div>
+                    </div>
+                    <div style="margin-top:0.5rem;">
+                        <button type="submit" class="btn primary-btn">Apply &amp; Restart</button>
+                    </div>
+                </form>
+                <div id="settings-msg"></div>
+
+                <!-- Section 1: Barcode Mappings -->
+                <div class="panel-header" style="margin-top: 1rem;">
+                    <h2>Barcode Mapping Database</h2>
+                </div>
+                
+                <form id="add-form" class="glass-form">
+                    <div class="form-group">
+                        <label for="barcode">Barcode</label>
+                        <input type="text" id="barcode" name="barcode" placeholder="e.g. 123456789" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <input type="number" id="destination" name="destination" placeholder="e.g. 5" min="0" required>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Add Mapping</button>
+                </form>
+                <div id="form-msg"></div>
+
+                <div class="table-container" style="max-height: 250px; margin-bottom: 2rem;">
+                    <table id="mappings-table">
+                        <thead>
+                            <tr>
+                                <th>Barcode</th>
+                                <th>Destination</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for m in mappings %}
+                            <tr data-id="{{ m.id }}">
+                                <td class="font-mono">{{ m.barcode }}</td>
+                                <td><span class="dest-badge">{{ m.destination }}</span></td>
+                                <td><button class="btn delete-btn" onclick="deleteMapping({{ m.id }})">Delete</button></td>
+                            </tr>
+                            {% endfor %}
+                            {% if not mappings %}
+                            <tr id="empty-row"><td colspan="3" class="text-center text-muted">No barcode mappings. Add one above!</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Section 2: Random Location Destinations -->
+                <div class="panel-header">
+                    <h2>Location Random Destinations</h2>
+                </div>
+                
+                <form id="add-random-form" class="glass-form">
+                    <div class="form-group">
+                        <label for="location">Location ID</label>
+                        <input type="text" id="location" name="location" placeholder="e.g. 5001" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="destinations">Destinations List (comma separated)</label>
+                        <input type="text" id="destinations" name="destinations" placeholder="e.g. 10, 20, 100" required autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn primary-btn">Add Location Rule</button>
+                </form>
+                <div id="random-form-msg" style="margin-bottom: 1rem; font-size: 0.875rem;"></div>
+
+                <div class="table-container" style="max-height: 250px;">
+                    <table id="random-table">
+                        <thead>
+                            <tr>
+                                <th>Location ID</th>
+                                <th>Allowed Random Destinations</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for r in random_rules %}
+                            <tr data-id="{{ r.id }}">
+                                <td class="font-mono">{{ r.location }}</td>
+                                <td><span class="dest-badge" style="background: rgba(59, 130, 246, 0.2); color: #93c5fd;">{{ r.destinations }}</span></td>
+                                <td><button class="btn delete-btn" onclick="deleteRandomRule({{ r.id }})">Delete</button></td>
+                            </tr>
+                            {% endfor %}
+                            {% if not random_rules %}
+                            <tr id="empty-random-row"><td colspan="3" class="text-center text-muted">No location random rules. Add one above!</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/app.js?v=10"></script>
+</body>
+</html>
