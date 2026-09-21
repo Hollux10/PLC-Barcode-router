@@ -9,6 +9,7 @@ A Windows tool that runs a TCP server to communicate with a barcode sorter PLC, 
 3. Routes each barcode:
    - **Barcode mode** (default): looks up the destination from the `routing` table in `routing.db`.
    - **Random mode**: picks a random destination from a location's rule in the `random_routing` table.
+   - **Round Robin mode**: cycles evenly through a location's listed destinations in `random_routing`, one item at a time.
 4. Sends a `050` response back with the 5-digit destination.
 5. Responds to heartbeat messages (`001`).
 6. Records offload events (`044`) - attempted (OFL), confirmed (SUP), wrong offload (WRO), etc.
@@ -57,7 +58,7 @@ Available at `http://localhost:5000`:
 
 | Page | Purpose |
 |------|---------|
-| **Home (`/`)** | Manage barcode→destination mappings, random routing rules, and app settings. |
+| **Home (`/`)** | Manage barcode→destination mappings, location destination lists (random / round-robin routing), and app settings. |
 | **Logs (`/logs-page`)** | Live list of recent protocol traffic (in-memory, last 200 entries). |
 | **Offload (`/offload`)** | Start/pause/clear an offload counting session; view stats per destination; download PDF report. |
 | **Trends (`/trends`)** | Per-minute offload trends chart. |
@@ -66,7 +67,7 @@ Available at `http://localhost:5000`:
 
 - **Host / Port** — where the TCP server listens for the PLC. Set these to the machine's actual LAN IP, e.g. `10.9.0.123:3000`. If binding to a specific IP fails with `WinError 10049` (address not valid), use `0.0.0.0` or confirm the IP is configured on the NIC.
 - **Log to file** — writes protocol traffic to `Protocol.txt` (rotated when it exceeds 2 MB; keep up to `log_file_count` rotated files, e.g. `Protocol_1.txt`, `Protocol_2.txt`, ...).
-- **Routing mode** — `barcode` (use the barcode mapping table) or `random` (use per-location random rules). Changing it restarts the TCP server.
+- **Routing mode** — `barcode` (use the barcode mapping table), `random` (use per-location random rules, picking a random destination each scan), or `roundrobin` (cycle through a location's listed destinations evenly). Changing it restarts the TCP server.
 
 ## Protocol
 
@@ -126,5 +127,5 @@ Note: `test_client.py` connects to `127.0.0.1:8080` while the default TCP listen
 
 - **`WinError 10049` "The requested address is not valid in its context"** — the configured host IP is not assigned to an adapter on this machine right now. Set Host to `0.0.0.0`, or to an IP that's actually on the NIC.
 - **PLC connects briefly then disconnects** — the PLC reconnects per transaction; that's normal in the captured log.
-- **Missing barcode responses to `00000`** — the barcode isn't in the mapping table, or routing mode is set to `random` with no rule for that location.
+- **Missing barcode responses to `00000`** — the barcode isn't in the mapping table, or routing mode is set to `random`/`roundrobin` with no rule for that location.
 - **PDF report fails** — on older versions the report generator had a signature bug (`text_at()` unexpected keyword); the current `_Builder.text_at` accepts `size=`, so rebuild the EXE (`pyinstaller main.spec`) after any changes.#

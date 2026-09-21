@@ -8,7 +8,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style.css?v=11">
+    <link rel="stylesheet" href="/static/style.css?v=12">
 </head>
 <body>
     <div class="background">
@@ -31,6 +31,17 @@
             </div>
             <p class="text-muted">Per-minute trends of offload attempts and confirmed offloads, broken down by destination.</p>
         </header>
+
+        <details class="help-box">
+            <summary>How to read this page</summary>
+            <ul>
+                <li>Charts update every minute while an offload session is running. Start or pause a session with the buttons above.</li>
+                <li><span class="help-title">Attempts vs Confirmed</span> — for each minute, the grey bar shows offload attempts (<code>OFL</code>) and the green bar shows confirmed offloads (<code>SUP</code>).</li>
+                <li><span class="help-title">Per-Destination Attempts</span> — the same attempts, stacked by destination so you can see which chute received the most that minute.</li>
+                <li><span class="help-title">Per-Minute Breakdown</span> — a table of the same data with wrong offloads (<code>WRO</code>) and success rate per minute.</li>
+                <li>A high attempts count with a low confirmed count usually means many wrong offloads or full chutes — check the Offload Events page for the reason codes.</li>
+            </ul>
+        </details>
 
         <div class="panel" style="margin-bottom: 2rem;">
             <div class="panel-header">

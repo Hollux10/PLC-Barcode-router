@@ -8,7 +8,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style.css?v=10">
+    <link rel="stylesheet" href="/static/style.css?v=12">
 </head>
 <body class="logs-body">
     <div class="background">
@@ -17,6 +17,22 @@
     </div>
 
     <div class="logs-page">
+        <details class="help-box">
+            <summary>How to read the log</summary>
+            <ul>
+                <li>Shows the last 200 protocol messages between this app and the PLC, newest at the top.</li>
+                <li>Colors: <code>blue</code> = received (<code>RX</code>) from the PLC, <code>green</code> = sent (<code>TX</code>) to the PLC, <code>yellow</code> = warning (e.g. wrong offload, PLC disconnected), <code>red</code> = error (e.g. destination <code>00000</code> sent because no rule matched).</li>
+                <li>Common messages:
+                    <ul>
+                        <li><code>001</code> — heartbeat between the app and the PLC (keeps the link alive).</li>
+                        <li><code>042</code> — barcode scan received from the PLC.</li>
+                        <li><code>050</code> — destination response sent back to the PLC (the 5-digit destination).</li>
+                        <li><code>044</code> — offload event from the PLC (item sent / confirmed / wrong chute, etc.).</li>
+                    </ul>
+                </li>
+                <li>Destination <code>00000</code> means no matching rule was found for that scan.</li>
+            </ul>
+        </details>
         <div class="panel console">
             <div class="panel-header">
                 <h2>PLC Communications Log</h2>

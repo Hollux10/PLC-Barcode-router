@@ -8,7 +8,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style.css?v=11">
+    <link rel="stylesheet" href="/static/style.css?v=12">
 </head>
 <body>
     <div class="background">
@@ -30,6 +30,18 @@
                 </div>
             </div>
         </header>
+
+        <details class="help-box">
+            <summary>How to use this page</summary>
+            <ul>
+                <li><span class="help-title">Start Session</span> resets all counts and begins counting offload messages from the PLC.</li>
+                <li><span class="help-title">Pause</span> stops counting without deleting what's already collected (resume with the same button).</li>
+                <li><span class="help-title">End Session</span> stops counting and offers to download a PDF report of the session.</li>
+                <li><span class="help-title">Event Counts</span> — total events per reason. Main codes: <code>OFL</code> = attempt to offload, <code>SUP</code> = offload confirmed, <code>WRO</code> = wrong offload (confirmed at a different chute than it was sent to).</li>
+                <li><span class="help-title">Offloads by Destination</span> — counts per chute destination. <code>Success Rate</code> = confirmed offloads ÷ attempts (only counts while a session is running).</li>
+                <li><span class="help-title">Recent Offload Events</span> — the raw offload messages from the PLC. <code>Sent Dest</code> is where the app routed the item; <code>Destination</code> is where the PLC confirmed it.</li>
+            </ul>
+        </details>
 
         <div class="panel" style="margin-bottom: 2rem;">
             <div class="panel-header">

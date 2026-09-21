@@ -289,3 +289,11 @@
 [2026-09-19 10:47:52] [INFO] TCP Server stopped.
 [2026-09-19 12:07:58] [ERROR] Failed to start TCP server on 10.9.0.123:3000 — [WinError 10049] The requested address is not valid in its context
 [2026-09-19 12:07:58] [INFO] TCP Server stopped.
+[2026-09-21 12:08:36] [ERROR] Failed to start TCP server on 10.9.0.123:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-21 12:08:36] [INFO] TCP Server stopped.
+[2026-09-21 12:14:45] [ERROR] Failed to start TCP server on 10.9.0.123:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-21 12:14:45] [INFO] TCP Server stopped.
+[2026-09-21 12:18:10] [ERROR] Failed to start TCP server on 10.9.0.123:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-21 12:18:10] [INFO] TCP Server stopped.
+[2026-09-21 12:22:37] [ERROR] Failed to start TCP server on 10.9.0.123:3000 — [WinError 10049] The requested address is not valid in its context
+[2026-09-21 12:22:37] [INFO] TCP Server stopped.

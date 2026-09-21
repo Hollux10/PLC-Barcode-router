@@ -387,6 +387,10 @@ def process_plc_message(data: str) -> str:
                 from database import get_random_destination
                 dest = get_random_destination(loc_id)
                 mode_label = f"Random for Loc {loc_id}"
+            elif mode == "roundrobin":
+                from database import get_round_robin_destination
+                dest = get_round_robin_destination(loc_id)
+                mode_label = f"Round Robin for Loc {loc_id}"
             else:
                 dest = get_destination(barcode)
                 mode_label = f"Barcode Map"
@@ -414,6 +418,10 @@ def process_plc_message(data: str) -> str:
         from database import get_random_destination
         dest = get_random_destination(loc_id)
         mode_label = f"Random for Loc {loc_id}"
+    elif mode == "roundrobin":
+        from database import get_round_robin_destination
+        dest = get_round_robin_destination(loc_id)
+        mode_label = f"Round Robin for Loc {loc_id}"
     else:
         dest = get_destination(barcode)
         mode_label = f"Barcode Map"

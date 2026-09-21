@@ -192,3 +192,24 @@ def get_random_destination(location: str):
             chosen = random.choice(raw_list)
             return int(chosen)
     return None
+
+# Per-location round-robin cursor (index of the next destination to assign)
+_round_robin_lock = threading.Lock()
+_round_robin_idx = {}
+
+def get_round_robin_destination(location: str):
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute("SELECT destinations FROM random_routing WHERE location = ?", (location,))
+    row = cursor.fetchone()
+    conn.close()
+    if row and row[0]:
+        # Parse comma-separated destinations e.g. "10, 20, 100"
+        raw_list = [d.strip() for d in row[0].split(",") if d.strip().isdigit()]
+        if raw_list:
+            with _round_robin_lock:
+                idx = _round_robin_idx.get(location, -1)
+                idx = (idx + 1) % len(raw_list)
+                _round_robin_idx[location] = idx
+                return int(raw_list[idx])
+    return None

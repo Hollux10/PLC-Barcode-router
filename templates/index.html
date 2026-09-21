@@ -8,7 +8,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style.css?v=10">
+    <link rel="stylesheet" href="/static/style.css?v=12">
 </head>
 <body>
     <div class="background">
@@ -19,7 +19,7 @@
     <div class="container">
         <header>
             <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
-                <h1>PLC Barcode Router <span style="font-size: 0.875rem; color: var(--text-muted); font-weight: 400; margin-left: 0.5rem;">Version: 2.03</span> <span class="badge" id="status-badge">Live</span></h1>
+                <h1>PLC Barcode Router <span style="font-size: 0.875rem; color: var(--text-muted); font-weight: 400; margin-left: 0.5rem;">Version: 2.05</span> <span class="badge" id="status-badge">Live</span></h1>
                 <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
                     <a class="btn primary-btn popout-btn" href="/offload" style="text-decoration:none;">Offload Events</a>
                     <a class="btn primary-btn popout-btn" href="/trends" style="text-decoration:none;">Trends</a>
@@ -36,6 +36,24 @@
                 </div>
             </div>
         </header>
+
+        <details class="help-box">
+            <summary>How to use this page</summary>
+            <ul>
+                <li><span class="help-title">Connection status</span> — the light is <code>green</code> when the PLC is connected and <code>blue (blinking)</code> while waiting for a connection.</li>
+                <li><span class="help-title">This App (Listening)</span> — IP address and port the app listens on for the PLC. Change only if the PLC's target address must be different, then press <code>Apply &amp; Restart</code>.</li>
+                <li><span class="help-title">Routing Strategy</span> — choose how a scanned barcode gets a destination:
+                    <ul>
+                        <li><code>Barcode Mapping</code> — each barcode has one fixed destination (set in the table below).</li>
+                        <li><code>Random Destination</code> — for the scan location, pick one destination at random from its destination list.</li>
+                        <li><code>Round Robin</code> — for the scan location, cycle through its destination list one by one, so items are spread evenly.</li>
+                    </ul>
+                </li>
+                <li><span class="help-title">Location Destination Lists</span> — the allowed destinations for each scan location. They are used by both <code>Random</code> and <code>Round Robin</code>. Example: for location <code>5001</code> with destinations <code>10, 20</code>, Round Robin sends <code>10</code> then <code>20</code> then <code>10</code>, and so on.</li>
+                <li><span class="help-title">Barcode Mapping Database</span> — used only in <code>Barcode Mapping</code> mode. If a scanned barcode is not listed here, the PLC receives destination <code>00000</code> (no destination).</li>
+                <li><span class="help-title">Text File Logging</span> — optionally save all PLC traffic to <code>Protocol.txt</code> for review.</li>
+            </ul>
+        </details>
 
         <div class="grid">
             <!-- Left Side: Management -->
@@ -64,6 +82,10 @@
                         <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; margin:0; color:var(--text-main);">
                             <input type="radio" name="routing_mode" value="random" {% if settings.routing_mode == 'random' %}checked{% endif %} style="width:1.1rem; height:1.1rem;">
                             <strong>Random Destination</strong> (Pick randomly per location)
+                        </label>
+                        <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; margin:0; color:var(--text-main);">
+                            <input type="radio" name="routing_mode" value="roundrobin" {% if settings.routing_mode == 'roundrobin' %}checked{% endif %} style="width:1.1rem; height:1.1rem;">
+                            <strong>Round Robin</strong> (Cycle through listed destinations per location)
                         </label>
                     </div>
 
@@ -144,9 +166,9 @@
                     </table>
                 </div>
 
-                <!-- Section 2: Random Location Destinations -->
+                <!-- Section 2: Location Destinations (used by Random and Round Robin modes) -->
                 <div class="panel-header">
-                    <h2>Location Random Destinations</h2>
+                    <h2>Location Destination Lists</h2>
                 </div>
                 
                 <form id="add-random-form" class="glass-form">
@@ -167,7 +189,7 @@
                         <thead>
                             <tr>
                                 <th>Location ID</th>
-                                <th>Allowed Random Destinations</th>
+                                <th>Allowed Destinations</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

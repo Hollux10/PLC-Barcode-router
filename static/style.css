@@ -603,6 +603,73 @@ tr:hover td {
     border-radius: 0.25rem;
 }
 
+/* Inline operator help box */
+.help-box {
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-left: 4px solid var(--accent);
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.help-box summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 0.95rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.help-box summary::-webkit-details-marker { display: none; }
+
+.help-box summary::after {
+    content: "\25B8";
+    margin-left: auto;
+    color: var(--accent);
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+.help-box[open] summary::after {
+    transform: rotate(90deg);
+}
+
+.help-box[open] summary {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.help-box ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.help-box li { margin: 0; }
+
+.help-box code {
+    font-family: 'JetBrains Mono', monospace;
+    color: #93c5fd;
+    background: rgba(59, 130, 246, 0.15);
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+}
+
+.help-box .help-title {
+    color: var(--text-main);
+}
+
 /* Report confirmation modal */
 .modal-overlay {
     position: fixed;
