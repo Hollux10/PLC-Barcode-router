@@ -22,13 +22,22 @@ jobs:
       - name: Build APK with Buildozer as non-root user
         run: |
           useradd -m -s /bin/bash builduser || true
+          # Accept SDK licenses as root
+          yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;33.0.1" "platforms;android-33" "platform-tools" || true
+          # Give builduser access to SDK
+          chmod -R a+rX /usr/local/lib/android/sdk || true
           chown -R builduser:builduser .
           su - builduser -c "
             export PIP_BREAK_SYSTEM_PACKAGES=1
-            export PATH=\$PATH:/usr/local/bin:/home/builduser/.local/bin
+            export PATH=\$PATH:/usr/local/bin:/home/builduser/.local/bin:/usr/local/lib/android/sdk/build-tools/33.0.1
+            export ANDROID_HOME=/usr/local/lib/android/sdk
+            export ANDROID_SDK_ROOT=/usr/local/lib/android/sdk
+            export ANDROID_NDK_HOME=/usr/local/lib/android/sdk/ndk/27.3.13750724
             pip install --user --upgrade 'cython<3.0.0' buildozer appdirs 'colorama>=0.3.3' jinja2 'sh>=2,<3.0' meson ninja build toml packaging setuptools 'wheel~=0.43.0' || true
             cd $(pwd) && buildozer -v android debug
           "
+
 
 
 
