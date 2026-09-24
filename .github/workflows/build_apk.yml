@@ -28,6 +28,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y git zip unzip autoconf libtool pkg-config \
+            automake libltdl-dev \
             zlib1g-dev libncurses5-dev libncursesw5-dev libssl-dev \
             libffi-dev libsqlite3-dev build-essential
 
