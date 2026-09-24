@@ -38,7 +38,6 @@ async def read_root(request: Request):
     random_rules = database.get_all_random_rules()
     settings = database.get_settings()
     return templates.TemplateResponse(
-        request=request, 
         name="index.html", 
         context={"request": request, "mappings": mappings, "random_rules": random_rules, "settings": settings}
     )
@@ -103,15 +102,15 @@ async def get_status():
 
 @app.get("/logs-page", response_class=HTMLResponse)
 async def logs_page(request: Request):
-    return templates.TemplateResponse(request=request, name="logs.html", context={})
+    return templates.TemplateResponse(name="logs.html", context={"request": request})
 
 @app.get("/offload", response_class=HTMLResponse)
 async def offload_page(request: Request):
-    return templates.TemplateResponse(request=request, name="offload.html", context={})
+    return templates.TemplateResponse(name="offload.html", context={"request": request})
 
 @app.get("/trends", response_class=HTMLResponse)
 async def trends_page(request: Request):
-    return templates.TemplateResponse(request=request, name="trends.html", context={})
+    return templates.TemplateResponse(name="trends.html", context={"request": request})
 
 @app.get("/offload/data")
 async def offload_data():
