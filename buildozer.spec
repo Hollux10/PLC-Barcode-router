@@ -65,6 +65,12 @@ android.ndk_path = /usr/local/lib/android/sdk/ndk/27.3.13750724
 # (str) Path to Android build-tools
 android.build_tools_version = 33.0.1
 
+# (str) Bootstrap to use for android builds
+p4a.bootstrap = webview
+
+# (int) Port for webview
+p4a.port = 5000
+
 [buildozer]
 
 # (int) Log level (0 = error only, 1 = info, 2 = debug (with command output))
