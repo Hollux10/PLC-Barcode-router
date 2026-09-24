@@ -52,6 +52,25 @@ pyinstaller main.spec --onefile
 
 Output goes to `dist/main.exe`. Copy `dist/main.exe` and `dist/routing.db` together on the target machine (the EXE reads/writes `routing.db` from its own folder).
 
+### Build for Linux (ELF Binary)
+
+On Linux / WSL:
+```bash
+python build_linux.py
+```
+Or run directly:
+```bash
+pyinstaller main.spec --onefile
+```
+Output executable: `dist/main_v2.05`.
+
+### Build / Run on Android (APK or Termux)
+
+See detailed instructions in [ANDROID_LINUX_PACKAGING.md](file:///d:/OpenCode/PLCRouter/PLC-Barcode-router/ANDROID_LINUX_PACKAGING.md).
+- **Termux:** Run natively as a Python script/service on Android handhelds.
+- **Buildozer:** Package into a native installable `.apk` package.
+
+
 ## Web UI
 
 Available at `http://localhost:5000`:
