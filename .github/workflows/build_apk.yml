@@ -19,9 +19,12 @@ jobs:
         run: |
           git config --global --add safe.directory /__w/PLC-Barcode-router/PLC-Barcode-router
 
-      - name: Build APK with Buildozer
+      - name: Build APK with Buildozer as non-root user
         run: |
-          buildozer --allow-root -v android debug
+          useradd -m builduser || true
+          chown -R builduser:builduser .
+          su builduser -c "buildozer -v android debug"
+
 
 
       - name: Upload APK Artifact
