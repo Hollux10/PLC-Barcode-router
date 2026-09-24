@@ -19,21 +19,28 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install Android SDK Build-Tools & Dependencies
+      - name: Set up Android SDK & Build Tools
+        uses: android-actions/setup-android@v3
+
+      - name: Install System Dependencies & Buildozer
         run: |
           sudo apt-get update
           sudo apt-get install -y git zip unzip python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libssl-dev libffi-dev libsqlite3-dev build-essential
           pip install --upgrade buildozer cython
           
-          # Install Android SDK build-tools via sdkmanager if missing
-          echo "y" | sudo ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;33.0.1" "platforms;android-33" || true
+          # Install specific build-tools containing aidl and accept licenses
+          yes | sdkmanager --licenses || true
+          sdkmanager "build-tools;33.0.1" "platforms;android-33" "platform-tools"
           
-          # Add build-tools to PATH
+          # Export build-tools directory containing aidl to PATH
           echo "${ANDROID_HOME}/build-tools/33.0.1" >> $GITHUB_PATH
+          echo "PATH=${ANDROID_HOME}/build-tools/33.0.1:$PATH" >> $GITHUB_ENV
 
       - name: Build APK with Buildozer
         run: |
+          export PATH="${ANDROID_HOME}/build-tools/33.0.1:$PATH"
           buildozer -v android debug
+
 
 
       - name: Upload APK Artifact
