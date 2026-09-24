@@ -23,7 +23,8 @@ jobs:
         run: |
           useradd -m -s /bin/bash builduser || true
           chown -R builduser:builduser .
-          su - builduser -c "cd $(pwd) && buildozer -v android debug"
+          su - builduser -c "export PATH=\$PATH:/usr/local/bin:~/.local/bin; cd $(pwd) && buildozer -v android debug"
+
 
 
 
