@@ -24,7 +24,7 @@ source.include_dirs = templates, static
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,fastapi,uvicorn,jinja2,pydantic,python-multipart,sqlite3
+requirements = python3,sqlite3,fastapi==0.100.0,starlette==0.27.0,anyio,idna,sniffio,uvicorn==0.23.2,click,h11,jinja2==3.1.5,markupsafe,pydantic==1.10.26,typing-extensions,python-multipart==0.0.9
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirement with recipes or site-packages
