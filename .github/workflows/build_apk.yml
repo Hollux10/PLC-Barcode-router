@@ -22,12 +22,13 @@ jobs:
       - name: Build APK with Buildozer as non-root user
         run: |
           apt-get update && apt-get install -y cython3 python3-cython || true
-          pip install --upgrade "cython<3.0.0" buildozer
+          pip install --break-system-packages --upgrade "cython<3.0.0" buildozer || pip install --upgrade "cython<3.0.0" buildozer
           useradd -m -s /bin/bash builduser || true
-          su - builduser -c "pip install --user --upgrade 'cython<3.0.0'"
+          su - builduser -c "pip install --break-system-packages --user --upgrade 'cython<3.0.0' || pip install --user --upgrade 'cython<3.0.0'"
           chown -R builduser:builduser .
           BUILDOZER_BIN=$(which buildozer || echo "/usr/local/bin/buildozer")
           su - builduser -c "export PATH=\$PATH:/usr/local/bin:/home/builduser/.local/bin; cd $(pwd) && $BUILDOZER_BIN -v android debug"
+
 
 
 
