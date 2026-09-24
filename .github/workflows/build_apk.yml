@@ -13,60 +13,16 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - name: Build APK with Buildozer Action
+        uses: ArtemSkit/buildozer-action@v1
         with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: Install System Dependencies & Buildozer
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y git zip unzip python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libssl-dev libffi-dev libsqlite3-dev build-essential aidl
-          pip install --upgrade buildozer cython
-
-      - name: Pre-accept Android SDK Licenses & Setup Buildozer SDK Paths
-        run: |
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
-          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "build-tools;33.0.1" "platforms;android-33" "platform-tools"
-          
-          # Create SDK directory structure for Buildozer
-          SDK_DIR="$HOME/.buildozer/android/platform/android-sdk"
-          mkdir -p "$SDK_DIR/tools/bin"
-          
-          # Copy or symlink cmdline-tools into SDK tools directory
-          ln -sf $ANDROID_HOME/cmdline-tools/latest/bin/* "$SDK_DIR/tools/bin/"
-          ln -sf $ANDROID_HOME/build-tools "$SDK_DIR/"
-          ln -sf $ANDROID_HOME/platforms "$SDK_DIR/"
-          ln -sf $ANDROID_HOME/platform-tools "$SDK_DIR/"
-          
-          # Wrapper script for sdkmanager to force --sdk_root
-          cat << 'EOF' > "$SDK_DIR/tools/bin/sdkmanager"
-#!/bin/bash
-SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
-exec "$SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$SDK_ROOT" "$@"
-EOF
-          chmod +x "$SDK_DIR/tools/bin/sdkmanager"
-
-
-
-      - name: Build APK with Buildozer
-        run: |
-          export PATH="$ANDROID_HOME/build-tools/33.0.1:$PATH"
-          buildozer -v android debug
-
-
-
-
+          command: buildozer -v android debug
+          buildozer_version: master
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: PLC_Barcode_Router_APK
           path: bin/*.apk
+
 
