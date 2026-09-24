@@ -21,9 +21,10 @@ jobs:
 
       - name: Build APK with Buildozer as non-root user
         run: |
-          useradd -m builduser || true
+          useradd -m -s /bin/bash builduser || true
           chown -R builduser:builduser .
-          su builduser -c "buildozer -v android debug"
+          su - builduser -c "cd $(pwd) && buildozer -v android debug"
+
 
 
 
