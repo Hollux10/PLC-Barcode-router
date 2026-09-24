@@ -8,52 +8,52 @@ on:
 jobs:
   build-apk:
     runs-on: ubuntu-latest
-    container:
-      image: kivy/buildozer:latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Fix ownership & permissions inside container
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install system dependencies
         run: |
-          git config --global --add safe.directory /__w/PLC-Barcode-router/PLC-Barcode-router
+          sudo apt-get update
+          sudo apt-get install -y git zip unzip autoconf libtool pkg-config \
+            zlib1g-dev libncurses5-dev libncursesw5-dev libssl-dev \
+            libffi-dev libsqlite3-dev build-essential
 
-      - name: Build APK with Buildozer as non-root user
+      - name: Install Python build dependencies
         run: |
-          useradd -m -s /bin/bash builduser || true
-          # Accept SDK licenses as root and install build-tools
-          yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
-          /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;33.0.1" "platforms;android-33" "platform-tools" || true
-          # Give builduser full ownership of SDK so buildozer can write to it
-          chown -R builduser:builduser /usr/local/lib/android || true
-          chown -R builduser:builduser .
-          su - builduser -c "
+          pip install --upgrade pip
+          pip install 'cython<3.0.0' buildozer
 
-            export PIP_BREAK_SYSTEM_PACKAGES=1
-            export PATH=\$PATH:/usr/local/bin:/home/builduser/.local/bin:/usr/local/lib/android/sdk/build-tools/33.0.1
-            export ANDROID_HOME=/usr/local/lib/android/sdk
-            export ANDROID_SDK_ROOT=/usr/local/lib/android/sdk
-            export ANDROID_NDK_HOME=/usr/local/lib/android/sdk/ndk/27.3.13750724
-            pip install --user --upgrade 'cython<3.0.0' buildozer appdirs 'colorama>=0.3.3' jinja2 'sh>=2,<3.0' meson ninja build toml packaging setuptools 'wheel~=0.43.0' || true
-            cd $(pwd) && buildozer -v android debug
-          "
+      - name: Set up Android SDK build-tools & legacy sdkmanager path
+        run: |
+          # Install build-tools with aidl into system SDK
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager \
+            "build-tools;33.0.1" "platforms;android-33" "platform-tools"
 
+          # Buildozer looks for tools/bin/sdkmanager (legacy path)
+          mkdir -p $ANDROID_HOME/tools
+          ln -sf $ANDROID_HOME/cmdline-tools/latest/bin $ANDROID_HOME/tools/bin || true
 
-
-
-
-
-
-
-
-
+      - name: Build APK with Buildozer
+        run: |
+          export PATH="$ANDROID_HOME/build-tools/33.0.1:$ANDROID_HOME/tools/bin:$PATH"
+          buildozer -v android debug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: PLC_Barcode_Router_APK
           path: bin/*.apk
-
-
-
