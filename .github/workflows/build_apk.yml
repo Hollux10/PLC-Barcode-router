@@ -30,19 +30,29 @@ jobs:
           sudo apt-get install -y git zip unzip python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libssl-dev libffi-dev libsqlite3-dev build-essential aidl
           pip install --upgrade buildozer cython
 
-      - name: Pre-accept Android SDK Licenses & Install Build Tools
+      - name: Pre-accept Android SDK Licenses & Setup Buildozer SDK Paths
         run: |
-          # Use pre-installed Android SDK on GitHub runner to pre-install build-tools
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
           $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "build-tools;33.0.1" "platforms;android-33" "platform-tools"
           
-          # Link runner Android SDK into buildozer location
-          mkdir -p ~/.buildozer/android/platform
-          ln -s $ANDROID_HOME ~/.buildozer/android/platform/android-sdk || true
+          # Create SDK directory structure for Buildozer
+          SDK_DIR="$HOME/.buildozer/android/platform/android-sdk"
+          mkdir -p "$SDK_DIR/tools/bin"
+          
+          # Copy or symlink cmdline-tools into SDK tools directory
+          ln -sf $ANDROID_HOME/cmdline-tools/latest/bin/* "$SDK_DIR/tools/bin/"
+          ln -sf $ANDROID_HOME/build-tools "$SDK_DIR/"
+          ln -sf $ANDROID_HOME/platforms "$SDK_DIR/"
+          ln -sf $ANDROID_HOME/platform-tools "$SDK_DIR/"
+          
+          # Wrapper script for sdkmanager to force --sdk_root
+          cat << 'EOF' > "$SDK_DIR/tools/bin/sdkmanager"
+#!/bin/bash
+SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+exec "$SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$SDK_ROOT" "$@"
+EOF
+          chmod +x "$SDK_DIR/tools/bin/sdkmanager"
 
-          # Buildozer legacy path check expects tools/bin/sdkmanager
-          mkdir -p $ANDROID_HOME/tools
-          ln -s $ANDROID_HOME/cmdline-tools/latest/bin $ANDROID_HOME/tools/bin || true
 
 
       - name: Build APK with Buildozer
