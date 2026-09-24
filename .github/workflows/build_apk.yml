@@ -53,6 +53,17 @@ jobs:
           EOF
           chmod +x $ANDROID_HOME/tools/bin/sdkmanager
 
+      - name: Provide patched python-for-android (skip pip self-upgrade)
+        run: |
+          git clone --single-branch --branch master \
+            https://github.com/kivy/python-for-android.git "$HOME/p4a"
+          # p4a runs 'pip install -U pip' in its venv; on Python 3.14 / pip 26
+          # this in-place self-upgrade corrupts pip (ImportError). Disable it.
+          sed -i \
+            's|source venv/bin/activate && pip install -U pip|true  # pip self-upgrade disabled|' \
+            "$HOME/p4a/pythonforandroid/build.py"
+          grep -n "pip self-upgrade disabled" "$HOME/p4a/pythonforandroid/build.py"
+
       - name: Build APK with Buildozer
         run: |
           export PATH="$ANDROID_HOME/build-tools/33.0.1:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"

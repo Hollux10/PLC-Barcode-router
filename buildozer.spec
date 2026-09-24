@@ -71,6 +71,11 @@ p4a.bootstrap = webview
 # (int) Port for webview
 p4a.port = 5000
 
+# (str) Use a self-provided python-for-android checkout instead of letting
+#       buildozer clone/manage it. CI clones p4a master to ~/p4a and patches
+#       the pip self-upgrade step, which corrupts the venv on Python 3.14.
+p4a.source_dir = ~/p4a
+
 [buildozer]
 
 # (int) Log level (0 = error only, 1 = info, 2 = debug (with command output))
