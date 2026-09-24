@@ -34,11 +34,16 @@ jobs:
         run: |
           # Use pre-installed Android SDK on GitHub runner to pre-install build-tools
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
-          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "build-tools;33.0.1" "platforms;android-33"
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "build-tools;33.0.1" "platforms;android-33" "platform-tools"
           
-          # Link runner Android SDK into buildozer location if needed
+          # Link runner Android SDK into buildozer location
           mkdir -p ~/.buildozer/android/platform
           ln -s $ANDROID_HOME ~/.buildozer/android/platform/android-sdk || true
+
+          # Buildozer legacy path check expects tools/bin/sdkmanager
+          mkdir -p $ANDROID_HOME/tools
+          ln -s $ANDROID_HOME/cmdline-tools/latest/bin $ANDROID_HOME/tools/bin || true
+
 
       - name: Build APK with Buildozer
         run: |
