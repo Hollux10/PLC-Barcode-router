@@ -42,7 +42,7 @@ jobs:
           # Install build-tools with aidl into system SDK
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
           $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager \
-            "build-tools;33.0.1" "platforms;android-33" "platform-tools"
+            "build-tools;35.0.0" "platforms;android-35" "platform-tools"
 
           # Buildozer/p4a might look for tools/bin/sdkmanager (legacy path)
           # We use a wrapper script instead of symlink to avoid Java classpath issues
@@ -66,7 +66,7 @@ jobs:
 
       - name: Build APK with Buildozer
         run: |
-          export PATH="$ANDROID_HOME/build-tools/33.0.1:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+          export PATH="$ANDROID_HOME/build-tools/35.0.0:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
           buildozer -v android debug
 
       - name: Upload APK Artifact
