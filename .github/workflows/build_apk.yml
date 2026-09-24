@@ -43,13 +43,18 @@ jobs:
           $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager \
             "build-tools;33.0.1" "platforms;android-33" "platform-tools"
 
-          # Buildozer looks for tools/bin/sdkmanager (legacy path)
-          mkdir -p $ANDROID_HOME/tools
-          ln -sf $ANDROID_HOME/cmdline-tools/latest/bin $ANDROID_HOME/tools/bin || true
+          # Buildozer/p4a might look for tools/bin/sdkmanager (legacy path)
+          # We use a wrapper script instead of symlink to avoid Java classpath issues
+          mkdir -p $ANDROID_HOME/tools/bin
+          cat << 'EOF' > $ANDROID_HOME/tools/bin/sdkmanager
+          #!/bin/bash
+          exec $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "$@"
+          EOF
+          chmod +x $ANDROID_HOME/tools/bin/sdkmanager
 
       - name: Build APK with Buildozer
         run: |
-          export PATH="$ANDROID_HOME/build-tools/33.0.1:$ANDROID_HOME/tools/bin:$PATH"
+          export PATH="$ANDROID_HOME/build-tools/33.0.1:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
           buildozer -v android debug
 
       - name: Upload APK Artifact
