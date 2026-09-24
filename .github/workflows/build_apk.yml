@@ -8,21 +8,26 @@ on:
 jobs:
   build-apk:
     runs-on: ubuntu-latest
+    container:
+      image: kivy/buildozer:latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Build APK with Buildozer Action
-        uses: ArtemSkit/buildozer-action@v1
-        with:
-          command: buildozer -v android debug
-          buildozer_version: master
+      - name: Fix ownership & permissions inside container
+        run: |
+          git config --global --add safe.directory /__w/PLC-Barcode-router/PLC-Barcode-router
+
+      - name: Build APK with Buildozer
+        run: |
+          buildozer -v android debug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: PLC_Barcode_Router_APK
           path: bin/*.apk
+
 
 
