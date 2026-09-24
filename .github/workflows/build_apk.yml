@@ -22,13 +22,14 @@ jobs:
       - name: Build APK with Buildozer as non-root user
         run: |
           useradd -m -s /bin/bash builduser || true
-          # Accept SDK licenses as root
+          # Accept SDK licenses as root and install build-tools
           yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
           /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;33.0.1" "platforms;android-33" "platform-tools" || true
-          # Give builduser access to SDK
-          chmod -R a+rX /usr/local/lib/android/sdk || true
+          # Give builduser full ownership of SDK so buildozer can write to it
+          chown -R builduser:builduser /usr/local/lib/android || true
           chown -R builduser:builduser .
           su - builduser -c "
+
             export PIP_BREAK_SYSTEM_PACKAGES=1
             export PATH=\$PATH:/usr/local/bin:/home/builduser/.local/bin:/usr/local/lib/android/sdk/build-tools/33.0.1
             export ANDROID_HOME=/usr/local/lib/android/sdk
