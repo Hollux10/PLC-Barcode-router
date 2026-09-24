@@ -19,27 +19,22 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Set up Android SDK & Build Tools
-        uses: android-actions/setup-android@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
       - name: Install System Dependencies & Buildozer
         run: |
           sudo apt-get update
-          sudo apt-get install -y git zip unzip python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libssl-dev libffi-dev libsqlite3-dev build-essential
+          sudo apt-get install -y git zip unzip python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libssl-dev libffi-dev libsqlite3-dev build-essential aidl
           pip install --upgrade buildozer cython
-          
-          # Install specific build-tools containing aidl and accept licenses
-          yes | sdkmanager --licenses || true
-          sdkmanager "build-tools;33.0.1" "platforms;android-33" "platform-tools"
-          
-          # Export build-tools directory containing aidl to PATH
-          echo "${ANDROID_HOME}/build-tools/33.0.1" >> $GITHUB_PATH
-          echo "PATH=${ANDROID_HOME}/build-tools/33.0.1:$PATH" >> $GITHUB_ENV
 
       - name: Build APK with Buildozer
         run: |
-          export PATH="${ANDROID_HOME}/build-tools/33.0.1:$PATH"
+          # Buildozer automatically downloads and configures Android SDK/NDK inside ~/.buildozer
           buildozer -v android debug
+
 
 
 
