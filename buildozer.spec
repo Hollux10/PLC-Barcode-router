@@ -56,10 +56,19 @@ android.archs = arm64-v8a, armeabi-v7a
 # (bool) Enable AndroidX support. Required when targeting Android 28+
 android.enable_androidx = True
 
+# (str) Path to the Android SDK directory (set for GitHub Actions runner)
+android.sdk_path = /usr/local/lib/android/sdk
+
+# (str) Path to the Android NDK directory (set for GitHub Actions runner)
+android.ndk_path = /usr/local/lib/android/sdk/ndk/27.3.13750724
+
+# (str) Path to Android build-tools
+android.build_tools_version = 33.0.1
+
 [buildozer]
 
 # (int) Log level (0 = error only, 1 = info, 2 = debug (with command output))
 log_level = 2
 
 # (int) Display warning if buildozer is run as root (0 = error, 1 = warning)
-warn_on_root = 1
+warn_on_root = 0
