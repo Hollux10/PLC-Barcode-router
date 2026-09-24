@@ -21,10 +21,12 @@ jobs:
 
       - name: Build APK with Buildozer as non-root user
         run: |
+          pip install --upgrade cython buildozer
           useradd -m -s /bin/bash builduser || true
           chown -R builduser:builduser .
-          BUILDOZER_BIN=$(which buildozer || echo "/home/user/.local/bin/buildozer")
-          su -p builduser -c "cd $(pwd) && $BUILDOZER_BIN -v android debug"
+          BUILDOZER_BIN=$(which buildozer || echo "/usr/local/bin/buildozer")
+          su -p builduser -c "export PATH=\$PATH:/usr/local/bin:/home/user/.local/bin; cd $(pwd) && $BUILDOZER_BIN -v android debug"
+
 
 
 
