@@ -12,6 +12,10 @@ package.domain = com.company.plcrouter
 # (str) Source code where the main.py live
 source.dir = .
 
+# (str) Application version
+version = 0.1
+
+
 # (list) Source files to include (let empty to include all the files)
 source.include_exts = py,png,jpg,kv,atlas,html,js,css,db,txt,spec,json
 
